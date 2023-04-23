@@ -7,6 +7,7 @@ public interface EmployeeDAO {
 
     void selectOneEmployee(int id);
 
+
     void updateOneEmployee(int id);
 
     void deleteOneEmployee(int id);
