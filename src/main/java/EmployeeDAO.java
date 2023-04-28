@@ -12,7 +12,12 @@ public interface EmployeeDAO {
 //    void selectOneEmployee(int id);
 
 
+    void mergeOneEmployee(Employee employee);
+
     void updateOneEmployee(Employee employee);
 
     void deleteOneEmployee(Employee employee);
+
+
+    void selectEmployee(Employee employee, long a);
 }

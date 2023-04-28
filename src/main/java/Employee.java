@@ -24,6 +24,13 @@ public class Employee  {
 
     }
 
+    public Employee( String first_name, String last_name, String gender, int city_id) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.gender = gender;
+        this.city_id = city_id;
+    }
+
     public int getCity_id() {
         return city_id;
     }
