@@ -1,23 +1,34 @@
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+
+@Table(name = "employee")
+
 public class Employee  {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "first_name")
     private String first_name;
+    @Column(name = "last_name")
     private String last_name;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "city_id")
     private int city_id;
+    public Employee(){
 
-    private String city_name;
+    }
 
-    public Employee(int id, String first_name, String last_name, String gender, int city_id, String city_name) {
-        this.id = id;
+    public Employee( String first_name, String last_name, String gender, int city_id) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
         this.city_id = city_id;
-        this.city_name = city_name;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getCity_id() {
@@ -27,11 +38,6 @@ public class Employee  {
     public void setCity_id(int city_id) {
         this.city_id = city_id;
     }
-
-    public int getId() {
-        return id;
-    }
-
 
     public String getFirst_name() {
         return first_name;
@@ -57,13 +63,6 @@ public class Employee  {
         this.gender = gender;
     }
 
-    public String getCity_name() {
-        return city_name;
-    }
-
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
-    }
 
     @Override
     public String toString() {
@@ -73,8 +72,14 @@ public class Employee  {
                 ", last_name='" + last_name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", city_id=" + city_id +
-                ", city_name='" + city_name + '\'' +
                 '}';
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
