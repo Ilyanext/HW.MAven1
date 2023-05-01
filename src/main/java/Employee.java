@@ -1,50 +1,48 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 
 @Table(name = "employee")
 
-public class Employee  {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column (name = "id")
+    private int id;
     @Column(name = "first_name")
     private String first_name;
     @Column(name = "last_name")
     private String last_name;
     @Column(name = "gender")
     private String gender;
-    @Column(name = "city_id")
-    private int city_id;
-    public Employee(){
 
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Employee( String first_name, String last_name, String gender, int city_id) {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private City city;
+
+      public Employee( String first_name, String last_name, String gender, City city) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
-        this.city_id = city_id;
+        this.city = city;
     }
 
-    public int getCity_id() {
-        return city_id;
-    }
+    public Employee() {
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
     }
 
     public String getFirst_name() {
         return first_name;
     }
 
-    public void setFirst_name(String first_name) {
+    public List<Employee> setFirst_name(String first_name) {
         this.first_name = first_name;
+        return null;
     }
 
     public String getLast_name() {
@@ -63,6 +61,13 @@ public class Employee  {
         this.gender = gender;
     }
 
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 
     @Override
     public String toString() {
@@ -71,15 +76,12 @@ public class Employee  {
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", gender='" + gender + '\'' +
-                ", city_id=" + city_id +
                 '}';
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
+
+
 }

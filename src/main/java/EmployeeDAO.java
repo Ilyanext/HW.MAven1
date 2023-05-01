@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public interface EmployeeDAO {
-//    List<Employee> getAllEmployee();
+    List<Employee> getAllEmployee();
 //
 //    void createEmployee();
 //
@@ -19,5 +19,5 @@ public interface EmployeeDAO {
     void deleteOneEmployee(Employee employee);
 
 
-    void selectEmployee(Employee employee, long a);
+    void selectEmployee(Employee employee, int a);
 }

@@ -1,18 +1,38 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
+        EntityManager entityManager = createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
 
 
-        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
-        Employee employees = new Employee("Ira", "Kira", "women", 1);
+//        City city = new City("Rim");
+//        Employee employee = new Employee("Rum", "Rum", "men", city);
+//        Employee employee1 = new Employee("Pum", "Kum", "men", city);
+//        Employee employee2 = new Employee("ytum", "uyum", "wumen", city);
+//        Employee employee = entityManager.find(Employee.class,1);
+//        System.out.println(employee.getCity());
 
-        employees.setFirst_name("Kola");
-        employeeDAO.mergeOneEmployee(employees);
-        System.out.println();
+        City city1 = entityManager.find(City.class, 3);
+        System.out.println(city1.getEmployee());
+//        List<Employee> employees=city1.getEmployee();
+        entityManager.remove(city1);
 
-        employeeDAO.selectEmployee(employees, 8);
-        employeeDAO.deleteOneEmployee(employees);
+        entityManager.flush();
 
 
+        transaction.commit();
+        entityManager.close();
+    }
+
+    static EntityManager createEntityManager() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
+        return entityManagerFactory.createEntityManager();
     }
 }
