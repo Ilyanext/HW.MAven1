@@ -1,9 +1,9 @@
 public interface CityDAO {
-    void mergeOneEmployee(City city);
+    void mergeCity(City city);
 
-    void updateOneEmployee(City city);
+    void saveCity(City city);
 
-    void deleteOneEmployee(City city);
+    void deleteCity(City city);
 
-    void selectEmployee(City city, int a);
+    void selectCity(City city, int a);
 }

@@ -1,6 +1,3 @@
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import java.util.List;
 
 
@@ -14,7 +11,7 @@ public interface EmployeeDAO {
 
     void mergeOneEmployee(Employee employee);
 
-    void updateOneEmployee(Employee employee);
+    void saveOneEmployee(Employee employee);
 
     void deleteOneEmployee(Employee employee);
 

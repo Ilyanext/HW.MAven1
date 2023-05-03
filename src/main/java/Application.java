@@ -11,21 +11,32 @@ public class Application {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
 
+        City city = new City("Rim");
+        CityDAO cityDAO = new CityDAOImpl();
 
-//        City city = new City("Rim");
-//        Employee employee = new Employee("Rum", "Rum", "men", city);
-//        Employee employee1 = new Employee("Pum", "Kum", "men", city);
-//        Employee employee2 = new Employee("ytum", "uyum", "wumen", city);
-//        Employee employee = entityManager.find(Employee.class,1);
-//        System.out.println(employee.getCity());
+        Employee employee = new Employee("Rum", "Rum", "men", city);
+        Employee employee1 = new Employee("Pum", "Kum", "men", city);
+        Employee employee2 = new Employee("ytum", "uyum", "wumen", city);
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 
-        City city1 = entityManager.find(City.class, 3);
-        System.out.println(city1.getEmployee());
-//        List<Employee> employees=city1.getEmployee();
-        entityManager.remove(city1);
 
-        entityManager.flush();
+        cityDAO.saveCity(city);
+        employeeDAO.saveOneEmployee(employee);
+        employeeDAO.saveOneEmployee(employee1);
+        employeeDAO.saveOneEmployee(employee2);
 
+
+        City city1 = entityManager.find(City.class, 2);
+        List<Employee> employee3 = city1.getEmployee();
+        Employee employee4 = employee3.get(1);
+        employee4.setFirstName("Max");
+        entityManager.merge(city1);
+
+
+        City city2 = entityManager.find(City.class, 1);
+        entityManager.remove(city2);
+//        cityDAO.selectCity(city, 1);
+//        cityDAO.deleteCity(city);
 
         transaction.commit();
         entityManager.close();

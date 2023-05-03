@@ -6,7 +6,7 @@ public class CityDAOImpl implements CityDAO{
     final String password = "ilya354909";
     final String url = "jdbc:postgresql://localhost:5432/postgres";
     @Override
-    public void mergeOneEmployee(City city) {
+    public void mergeCity(City city) {
 
             EntityManager entityManager = EmployeeDAOImpl.createEntityManager();
             EntityTransaction transaction = entityManager.getTransaction();
@@ -20,7 +20,7 @@ public class CityDAOImpl implements CityDAO{
 
 
     @Override
-    public void updateOneEmployee(City city) {
+    public void saveCity(City city) {
 
         EntityManager entityManager = EmployeeDAOImpl.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -33,7 +33,7 @@ public class CityDAOImpl implements CityDAO{
     }
 
     @Override
-    public void deleteOneEmployee(City city) {
+    public void deleteCity(City city) {
         EntityManager entityManager = EmployeeDAOImpl.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
@@ -45,19 +45,19 @@ public class CityDAOImpl implements CityDAO{
     }
 
     @Override
-    public void selectEmployee(City city, int a) {
+    public void selectCity(City city, int a) {
 
             EntityManager entityManager = EmployeeDAOImpl.createEntityManager();
             EntityTransaction transaction = entityManager.getTransaction();
             transaction.begin();
 
-            city = entityManager.find(City.class, a);
+            entityManager.find(City.class, a);
 
             transaction.commit();
             entityManager.close();
         }
-//    static EntityManager createEntityManager() {
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
-//        return entityManagerFactory.createEntityManager();}
+    static EntityManager createEntityManager() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
+        return entityManagerFactory.createEntityManager();}
     }
 

@@ -9,52 +9,53 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
-    private int city_id;
+    private int cityId;
 
     @Column(name = "city_name")
-    private String city_name;
+    private String cityName;
 
-    public City(String city_name) {
-        this.city_name = city_name;
+    public City(String cityName) {
+        this.cityName = cityName;
     }
 
     public City() {
 
     }
 
-    @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id")
+    @OneToMany (mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employee;
 
-    public int getCity_id() {
-        return city_id;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
+    public void setCityId(int city_id) {
+        this.cityId = city_id;
     }
 
-    public String getCity_name() {
-        return city_name;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
+    public void setCityName(String city_name) {
+        this.cityName = city_name;
     }
 
     public List<Employee> getEmployee() {
         return employee;
     }
 
-    public void setEmployee(List<Employee> employee) {
+    public void setEmployee() {
         this.employee = employee;
     }
 
     @Override
     public String toString() {
         return "City{" +
-                "city_id=" + city_id +
-                ", city_name='" + city_name + '\'' +
+                "city_id=" + cityId +
+                ", city_name='" + cityName + '\'' +
                 '}';
     }
+
+
 }

@@ -26,12 +26,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void updateOneEmployee(Employee employee) {
+    public void saveOneEmployee(Employee employee) {
         EntityManager entityManager = createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
 
-        entityManager.merge(employee);
+        entityManager.persist(employee);
 
         transaction.commit();
         entityManager.close();

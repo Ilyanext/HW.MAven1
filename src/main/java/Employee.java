@@ -1,5 +1,4 @@
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 
@@ -11,23 +10,25 @@ public class Employee {
     @Column (name = "id")
     private int id;
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
     @Column(name = "gender")
     private String gender;
+
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id")
-    private City city;
 
-      public Employee( String first_name, String last_name, String gender, City city) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Employee(String firstName, String lastName, String gender, City city) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.city = city;
     }
@@ -36,21 +37,25 @@ public class Employee {
 
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public City getCity() {
+        return city;
     }
 
-    public List<Employee> setFirst_name(String first_name) {
-        this.first_name = first_name;
-        return null;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String last_name) {
+        this.lastName = last_name;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getGender() {
@@ -61,20 +66,13 @@ public class Employee {
         this.gender = gender;
     }
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';
     }
