@@ -1,58 +1,61 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 @Entity
 
 @Table(name = "employee")
 
-public class Employee  {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column (name = "id")
+    private int id;
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
     @Column(name = "gender")
     private String gender;
-    @Column(name = "city_id")
-    private int city_id;
-    public Employee(){
 
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Employee( String first_name, String last_name, String gender, int city_id) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+
+    public Employee(String firstName, String lastName, String gender, City city) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
-        this.city_id = city_id;
+        this.city = city;
     }
 
-    public int getCity_id() {
-        return city_id;
+    public Employee() {
+
     }
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
+    public City getCity() {
+        return city;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public void setLastName(String last_name) {
+        this.lastName = last_name;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getGender() {
@@ -68,18 +71,15 @@ public class Employee  {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
-                ", city_id=" + city_id +
                 '}';
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
+
+
 }

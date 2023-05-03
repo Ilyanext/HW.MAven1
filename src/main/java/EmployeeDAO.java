@@ -1,11 +1,8 @@
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import java.util.List;
 
 
 public interface EmployeeDAO {
-//    List<Employee> getAllEmployee();
+    List<Employee> getAllEmployee();
 //
 //    void createEmployee();
 //
@@ -14,10 +11,10 @@ public interface EmployeeDAO {
 
     void mergeOneEmployee(Employee employee);
 
-    void updateOneEmployee(Employee employee);
+    void saveOneEmployee(Employee employee);
 
     void deleteOneEmployee(Employee employee);
 
 
-    void selectEmployee(Employee employee, long a);
+    void selectEmployee(Employee employee, int a);
 }
